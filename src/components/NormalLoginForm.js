@@ -1,13 +1,37 @@
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import React from 'react';
+import {Redirect} from 'react-router-dom'
+
+const axios = require('axios');
 
 class NormalLoginForm extends React.Component {
+
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        
+        axios(
+          {
+            method:'post',
+            url:"http://localhost:8080/login",
+            data:values,
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+          }
+        )
+        .then(function(res){
+          if(res.data.success === true){
+            return <Redirect to='/'/>
+          }
+          else{
+            console.log('login failed')
+          }
+        })
+        .catch(function(err){
+          console.log(err)
+        })
+        console.log('hello')
       }
     });
   };
