@@ -11,8 +11,9 @@ export default class HomePage extends Component {
 
     getCookie = (name)=>{
 
+        debugger;
         var cookies = document.cookie.split(";")
-
+        
         if(cookies.length > 0)
         {
             for(var i=0; i< cookies.length; i++){

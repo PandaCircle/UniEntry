@@ -12,16 +12,18 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        var params = JSON.stringify(values).replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace(/:/g,'=').replace(/,/g,"&")
         axios(
           {
             method:'post',
             url:"http://localhost:8080/login",
-            data:values,
+            data:params,
             headers:{'Content-Type':'application/x-www-form-urlencoded'}
           }
         )
         .then(function(res){
-          if(res.data.success === true){
+          console.log(res.data)
+          if(res.data.meta.success === true){
             return <Redirect to='/'/>
           }
           else{
