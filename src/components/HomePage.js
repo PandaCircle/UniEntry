@@ -29,7 +29,7 @@ export default class HomePage extends Component {
     }
 
     render() {
-        if(this.getUser()==""){
+        if(this.getUser()===""){
             return <Redirect to='/login'/>
         }
         else{
