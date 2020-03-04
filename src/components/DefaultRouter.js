@@ -1,9 +1,9 @@
 import React from 'react'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
-import { WrappedNormalLoginForm } from './NormalLoginForm'
-import HomePage from './HomePage'
 import {createBrowserHistory} from 'history'
-import QueryBoardView from './QueryBoardView'
+
+import ProductView from './products/ProductView'
+import HomePage from './HomePage'
 
 export default function DefaultRouter() {
 
@@ -11,8 +11,8 @@ export default function DefaultRouter() {
     return (
         <Router history = {history}>
             <Switch>
-                <Route exact path='/' component={QueryBoardView}/>
-                <Route path='/login' component={WrappedNormalLoginForm}/>
+                <Route exact path='/' component={HomePage}/>
+                <Route path='/login' component={ProductView}/>
             </Switch>
         </Router>
     )

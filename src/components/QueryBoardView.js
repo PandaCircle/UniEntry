@@ -12,7 +12,7 @@ export default class QueryBoardView extends Component {
         return (
             <div>
                 <Breadcrumb>
-                    {dataPath.forEach(element => 
+                    {this.dataPath.forEach(element => 
                         (<Breadcrumb.Item>element</Breadcrumb.Item>)
                     )}
                 </Breadcrumb>

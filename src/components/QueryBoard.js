@@ -13,7 +13,7 @@ class QueryBoard extends Component {
     render() {
         return (
             <div>
-                <QueryBoardView />
+                <QueryBoardView dataPath={['sdfi','loo']} dataSource={} dataType='ok'/>
             </div>
         )
     }
