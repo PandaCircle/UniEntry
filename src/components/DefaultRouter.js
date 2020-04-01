@@ -5,6 +5,7 @@ import {createBrowserHistory} from 'history'
 import ProductView from './products/ProductView'
 import HomePage from './HomePage'
 import SupplyOrder from './products/SupplyOrder'
+import MultiDatePicker from './orders/MultiDatePicker'
 
 export default function DefaultRouter() {
 
@@ -13,7 +14,7 @@ export default function DefaultRouter() {
         <Router history = {history}>
             <Switch>
                 <Route exact path='/' component={HomePage}/>
-                <Route path='/login' component={SupplyOrder}/>
+                <Route path='/login' component={MultiDatePicker}/>
             </Switch>
         </Router>
     )
