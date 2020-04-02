@@ -4,6 +4,7 @@ import moment from 'moment'
 
 const {Option} = Select
 
+
 export default class MultiDatePicker extends Component {
 
     constructor(props){
@@ -13,33 +14,41 @@ export default class MultiDatePicker extends Component {
         //initial state
         this.state={
             //indicate chosen date in year or month view
-            currentMoment:currentMoment
+            currentMoment:currentMoment,
+            selectedMoment:{}
         }
     }
 
     handleMomentChange = (value)=>{
-        console.log(value,'change')
         this.setState({...this.state,currentMoment:value})
     }
 
-    customHeader = ({value,type,onChange,onTypeChange})=>{
+    dayPickerHeader =({value,type,onChange,onTypeChange})=>{
+        return (
+            <div>{value.month()}</div>
+        )
+    }
 
-        var selectedYear = value.clone().year()
+    monthPickerHeader = ({value,type,onChange,onTypeChange})=>{
+
+        var selectedYear = value.year()
         var yearSelector = [-2,-1,0,1,2]
 
         
         let handleSelectChange = (newYear)=>{
-            console.log(newYear)
+            console.log(newYear,selectedYear)
             var now = value.clone().year(newYear)
             onChange(now)
         }
 
         return(
             <Row>
-                <Col span={6}> 前 </Col>
+                <Col span={6}> 
+                    <div onClick={()=>handleSelectChange(selectedYear-1)}>前一年</div>
+                </Col>
                 <Col span={12}>
                     <Select
-                    defaultValue={selectedYear}
+                    value={selectedYear}
                     onChange={value=>handleSelectChange(value)}
                     >
                         {yearSelector.map(element => (
@@ -47,7 +56,9 @@ export default class MultiDatePicker extends Component {
                         ))}
                     </Select>
                 </Col>
-                <Col span={6}> 后 </Col>
+                <Col span={6}>
+                    <div onClick={()=>handleSelectChange(selectedYear+1)}>后一年</div>
+                </Col>
             </Row>
         )
     }
@@ -59,9 +70,15 @@ export default class MultiDatePicker extends Component {
                 <Calendar 
                 mode='year'
                 fullscreen={false}
-                headerRender={this.customHeader}
+                headerRender={this.monthPickerHeader}
                 value={this.state.currentMoment}
                 onChange={e=>this.handleMomentChange(e)}
+                />
+                <Calendar
+                mode='month'
+                value={this.state.currentMoment}
+                headerRender={this.dayPickerHeader}
+                onSelect={moment=>this.handleMomentChange(moment)}
                 />
             </div>
         )
