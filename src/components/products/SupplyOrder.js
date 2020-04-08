@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { Checkbox, DatePicker, Calendar } from 'antd'
+import { Checkbox, DatePicker, Calendar, Typography, Form, Button } from 'antd'
 import OrderCalendar from '../orders/OrderCalendar'
+import MultiDatePicker from '../orders/MultiDatePicker'
+import IMultiDatePicker from '../orders/IMultiDatePicker'
+
+const {Title} = Typography
 
 export default class SupplyOrder extends Component {
 
@@ -13,17 +17,33 @@ export default class SupplyOrder extends Component {
         )
     }
 
+    handleFinish =(values)=>{
+        console.log(values)
+    }
+
     render() {
         return (
-            <Fragment>
-                <Checkbox.Group options={this.area} />
-                <DatePicker picker='month' onChange={()=>null}/>
-                {/* <Calendar 
-                headerRender={()=>null}
-                dateFullCellRender={this.dateCellRender}
-                /> */}
-                <OrderCalendar />
-            </Fragment>         
+            <Form
+            onFinish={this.handleFinish}
+            initialValues={{
+                multidates:[]
+            }}
+            >
+                <Title level={3}>食堂选择</Title>
+                <p style={{paddingLeft:'150px'}}>我是个占位符</p>
+                <Title level={3}>时间选择</Title>
+                <Form.Item
+                name={'multidates'}
+                style={{paddingLeft:'150px'}}
+                >
+                    <IMultiDatePicker/>
+                </Form.Item>
+                <Form.Item
+                style={{paddingLeft:'150px'}}
+                >
+                    <Button type='primary' htmlType='submit'>sumbit</Button>
+                </Form.Item>
+            </Form>       
         )
     }
 }

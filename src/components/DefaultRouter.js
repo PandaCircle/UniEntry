@@ -6,6 +6,7 @@ import ProductView from './products/ProductView'
 import HomePage from './HomePage'
 import SupplyOrder from './products/SupplyOrder'
 import MultiDatePicker from './orders/MultiDatePicker'
+import IMultiDatePicker from './orders/IMultiDatePicker'
 
 export default function DefaultRouter() {
 
@@ -14,7 +15,7 @@ export default function DefaultRouter() {
         <Router history = {history}>
             <Switch>
                 <Route exact path='/' component={HomePage}/>
-                <Route path='/login' component={MultiDatePicker}/>
+                <Route path='/login' component={SupplyOrder}/>
             </Switch>
         </Router>
     )
